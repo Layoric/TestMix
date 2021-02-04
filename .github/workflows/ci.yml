@@ -32,5 +32,6 @@ jobs:
         uses: docker/build-push-action@v2.2.2
         with:
           file: TestMix/Dockerfile
+          context: ./TestMix
           push: true
           tags: ${{ env.image_repository_name }}:latest
