@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ServiceStack" Version="5.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestMix.ServiceInterface\TestMix.ServiceInterface.csproj" />
+    <ProjectReference Include="..\TestMix.ServiceModel\TestMix.ServiceModel.csproj" />
+  </ItemGroup>
+
+</Project>
