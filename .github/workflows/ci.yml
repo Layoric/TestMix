@@ -29,6 +29,5 @@ jobs:
         with:
             context: ./TestMix
             file: ./Dockerfile
-            platforms: linux/amd64,linux/arm64,linux/386
             push: true
             tags: ${{ env.image_repository_name }}:latest
