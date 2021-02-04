@@ -27,7 +27,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.2.2
         with:
-            path: TestMix
-            dockerfile: TestMix/Dockerfile
+            context: TestMix
+            file: TestMix/Dockerfile
             push: true
             tags: ${{ env.image_repository_name }}:latest
