@@ -6,7 +6,6 @@ services:
     restart: always
     environment:
       VIRTUAL_HOST: test-mix.layoric.org
-      VIRTUAL_PORT: 80
       LETSENCRYPT_HOST: test-mix.layoric.org
       LETSENCRYPT_EMAIL: layoric@layoric.org
 
