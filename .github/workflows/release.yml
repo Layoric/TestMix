@@ -72,4 +72,4 @@ jobs:
           envs: APPTOKEN
           script: |
             echo $APPTOKEN | docker login ghcr.io -u Layoric --password-stdin
-            docker-compose up -f ~/docker-compose.yml
+            docker-compose up -f ~/deploy/docker-compose.yml
