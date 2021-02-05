@@ -56,15 +56,19 @@ jobs:
           source: "deploy/docker-compose.yml"
           target: "~/"
 
+      - name: Set the value
+        run: |
+          echo "GH_TOKEN=${{ secrets.CR_PAT }}" >> $GITHUB_ENV
+
       - name: remote docker-compose up via ssh
         uses: appleboy/ssh-action@v0.1.4
         env:
-          APPTOKEN: ${{ github.repository_owner }}
+          APPTOKEN: ${{ env.GH_TOKEN }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USERNAME }}
+          username: ec2-user
           key: ${{ secrets.DEPLOY_KEY }}
-          port: ${{ secrets.DEPLOY_PORT }}
+          port: 22
           envs: APPTOKEN
           script: |
             echo $APPTOKEN | docker login ghcr.io -u Layoric --password-stdin
