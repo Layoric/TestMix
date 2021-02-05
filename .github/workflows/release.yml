@@ -59,7 +59,7 @@ jobs:
           target: "~/"
 
       - name: remote docker-compose up via ssh
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           port: ${{ secrets.DEPLOY_PORT }}
