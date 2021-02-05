@@ -68,5 +68,6 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
+          evns: CR_PAT,USERNAME
           script: |
             ls -a
