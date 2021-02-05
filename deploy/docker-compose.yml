@@ -1,6 +1,14 @@
-version: '2'
-
+version: "3.9"
 services:
-  myapp:
-    image: ghcr.io/layoric/testmix:latest
-    
+  web:
+    image: ghcr.io/layoric/testmix:$RELEASE_VERSION
+    restart: always
+    environment:
+      VIRTUAL_HOST: test-mix.layoric.org
+      LETSENCRYPT_HOST: test-mix.layoric.org
+      LETSENCRYPT_EMAIL: layoric@layoric.org
+
+networks:
+  shared:
+    external:
+      name: webproxy
