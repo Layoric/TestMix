@@ -61,13 +61,14 @@ jobs:
       - name: remote docker-compose up via ssh
         uses: appleboy/ssh-action@v0.1.4
         env:
-          CR_PAT: ${{ secrets.CR_PAT }}
+          APPTOKEN: ${{ secrets.CR_PAT }}
           USERNAME: ${{ github.repository_owner }}
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           port: ${{ secrets.DEPLOY_PORT }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
-          envs: CR_PAT,USERNAME
+          envs: APPTOKEN,USERNAME
           script: |
             ls -a
+            docker version
