@@ -1,0 +1,42 @@
+name: Publish Docker image
+on:
+  release:
+    types: [published]
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dotnet publish
+        run: |
+          dotnet publish ./TestMix/ -o publish
+          
+      - name: repository name fix
+        run: echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+      
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2.2.2
+        with:
+          file: TestMix/Dockerfile
+          context: .
+          push: true
+          tags: ghcr.io/${{ env.image_repository_name }}:${{ github.event.release.tag_name }}
+  
+  deploy_via_ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: copy compose file via scp
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.KEY }}
+          source: "deploy/docker-compose.yml"
+          target: "~/"

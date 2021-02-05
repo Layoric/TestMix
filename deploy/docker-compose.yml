@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  myapp:
+    image: ghcr.io/layoric/testmix:latest
+    
