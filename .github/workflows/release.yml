@@ -60,7 +60,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           port: ${{ secrets.DEPLOY_PORT }}
           key: ${{ secrets.DEPLOY_KEY }}
-          source: "deploy/TestMix/docker-compose.yml"
+          source: "deploy/docker-compose-TestMix.yml"
           target: "~/"
 
       - name: Set the value
@@ -81,4 +81,4 @@ jobs:
           envs: APPTOKEN,USERNAME
           script: |
             echo $APPTOKEN | docker login ghcr.io -u $USERNAME --password-stdin
-            docker-compose -f ~/deploy/TestMix/docker-compose.yml up -d
+            docker-compose -f ~/deploy/TestMix/docker-compose-TestMix.yml up -d
