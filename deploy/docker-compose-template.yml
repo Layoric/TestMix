@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   web:
-    image: ghcr.io/layoric/testmix:${RELEASE_VERSION}
+    image: ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}
     network_mode: bridge
     restart: always
     networks:
@@ -9,8 +9,8 @@ services:
     ports:
       - "8081:80"
     environment:
-      VIRTUAL_HOST: test-mix.layoric.org
-      LETSENCRYPT_HOST: test-mix.layoric.org
+      VIRTUAL_HOST: ${HOST_DOMAIN}
+      LETSENCRYPT_HOST: ${HOST_DOMAIN}
       LETSENCRYPT_EMAIL: layoric@layoric.org
 
 networks:

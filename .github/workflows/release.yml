@@ -37,11 +37,18 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-        
+
+      - name: repository name fix and env
+        run: |
+          echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "domain=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
+
       - name: docker-compose file prep
         uses: danielr1996/envsubst-action@1.0.0
         env:
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
+          IMAGE_REPO: ${{ env.image_repository_name }}
+          HOST_DOMAIN: ${{ env.domain }}
         with:
           input: deploy/docker-compose-template.yml
           output: deploy/docker-compose.yml
