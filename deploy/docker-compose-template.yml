@@ -4,6 +4,10 @@ services:
     image: ghcr.io/layoric/testmix:${RELEASE_VERSION}
     network_mode: bridge
     restart: always
+    networks:
+      default:
+        external:
+          name: webproxy
     ports:
       - "8081:80"
     environment:
