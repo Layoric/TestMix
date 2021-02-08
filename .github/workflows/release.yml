@@ -81,4 +81,4 @@ jobs:
           envs: APPTOKEN,USERNAME
           script: |
             echo $APPTOKEN | docker login ghcr.io -u $USERNAME --password-stdin
-            docker-compose -f ~/deploy/TestMix/docker-compose-TestMix.yml up -d
+            docker-compose -f ~/deploy/docker-compose-TestMix.yml up -d
