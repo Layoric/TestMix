@@ -3,7 +3,7 @@ services:
   web:
     image: ghcr.io/${IMAGE_REPO}:${RELEASE_VERSION}
     restart: always
-    network: bridge
+    network_mode: bridge
     ports:
       - "8081:80"
     environment:
