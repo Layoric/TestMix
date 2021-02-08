@@ -5,9 +5,7 @@ services:
     network_mode: bridge
     restart: always
     networks:
-      default:
-        external:
-          name: webproxy
+      - webproxy
     ports:
       - "8081:80"
     environment:
