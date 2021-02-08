@@ -42,6 +42,7 @@ jobs:
         run: |
           echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
           echo "domain=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
+          echo "letsencrypt_email=${{ secrets.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV
 
       - name: docker-compose file prep
         uses: danielr1996/envsubst-action@1.0.0
@@ -49,6 +50,7 @@ jobs:
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
           IMAGE_REPO: ${{ env.image_repository_name }}
           HOST_DOMAIN: ${{ env.domain }}
+          LETSENCRYPT_EMAIL: ${{ env.letsencrypt_email }}
         with:
           input: deploy/docker-compose-template.yml
           output: deploy/docker-compose-TestMix.yml
