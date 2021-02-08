@@ -4,6 +4,8 @@ services:
     image: ghcr.io/layoric/testmix:${RELEASE_VERSION}
     network_mode: bridge
     restart: always
+    ports:
+      - "8081:80"
     environment:
       VIRTUAL_HOST: test-mix.layoric.org
       LETSENCRYPT_HOST: test-mix.layoric.org
